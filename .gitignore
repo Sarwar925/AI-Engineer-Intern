@@ -1,20 +1,82 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
 
 # Env files
 .env
 *.env
+*.env.*
 
-# Django
+# Django / databases
 db.sqlite3
+*.sqlite3
 
-# Node
+# Node / frontend builds
 node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+.next/
+.nuxt/
+.parcel-cache/
+vite.svg
+*.tsbuildinfo
 
-# VS Code
+# Generated app data / embeddings / temp files
+**/.adk/
+**/chroma_db/
+**/media/
+**/tmp/
+**/temp/
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/.next/
+**/.nuxt/
+**/.parcel-cache/
+*.db
+*.sqlite3
+*.log
+*.wav
+*.mp3
+*.zip
+*.gguf
+*.pth
+*.csv
+*.pdf
+quick_start_with_hugging_face.ipynb
+
+# Package manager caches / logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# VS Code / IDEs
 .vscode/
+.idea/
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
