@@ -1,0 +1,167 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(40, 111, 255, 0.32), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(0, 212, 170, 0.18), transparent 36%),
+    #08111f;
+  color: #ecf3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 48px 20px;
+  display: grid;
+  place-items: center;
+  gap: 24px;
+}
+
+.hero,
+.chat-card {
+  width: min(920px, 100%);
+}
+
+.hero {
+  display: grid;
+  gap: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  color: #8cc7ff;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4vw, 4.6rem);
+  line-height: 0.95;
+}
+
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  color: #aac0df;
+  font-size: 1.05rem;
+}
+
+.chat-card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid rgba(157, 188, 255, 0.16);
+  border-radius: 24px;
+  background: rgba(8, 17, 31, 0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.chat-stream {
+  min-height: 360px;
+  max-height: 58vh;
+  overflow: auto;
+  display: grid;
+  gap: 12px;
+  padding: 4px;
+}
+
+.bubble {
+  width: fit-content;
+  max-width: min(680px, 100%);
+  padding: 14px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  animation: rise 180ms ease-out;
+}
+
+.bubble--user {
+  margin-left: auto;
+  background: linear-gradient(135deg, #2e7eff, #6fa9ff);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.bubble--assistant {
+  background: rgba(255, 255, 255, 0.08);
+  color: #eff5ff;
+  border-bottom-left-radius: 6px;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.composer input {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(157, 188, 255, 0.22);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.composer input::placeholder {
+  color: #8fa4c1;
+}
+
+.composer button {
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 14px;
+  background: #15d3a5;
+  color: #04131a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 20px 14px;
+  }
+
+  .chat-card {
+    padding: 16px;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,17 @@
+Step1: Developer Accounts & Keys
+LinkedIn Developer Portal: You must have an "App" created at developer.linkedin.com.
+OpenAI API Key: A valid sk-... key with access to GPT-4o (or a Google API key for Gemini).
+LinkedIn Permissions (Scopes): Your app must have these specifically enabled:
+w_member_social
+openid
+profile
+
+Step2:-
+    
+    ACCESS_TOKEN = "AQXp-NrSvD29pLJ3jBFWBosiHKejONFDe_5eKUwB6MwK_5HrXC4USP_KGcOg4UIzr_spfpHRu2_eKsN-rVRUFhd3XWpvzRjnHMlGSiR0C6uCU3Vd4p38dZkMcBGLUbXVvbzzg4W2Bl7ERI2Dccy6h6noBjOksvNeqybz3kfMkLGZOkFoqU5jaZEN7fa-RsB36hPJjnubQ6GSyWE6lrOZK2rlMtK2CIg_lLemgpmidqkhfYQPLRatSZhhrA9jx9SZbsUBj692EFzsLqikswSz-muvoeoK4fnSumqk5xRSb94dLPMGIa9N17xLeq5bMmbjYW3QRBhMogiMUvtmcsZa00FMak27EA"
+    AUTHOR_URN = "urn:li:person:hbpzZRp4Js"
+    url = "https://api.linkedin.com/rest/posts"
+    openai_api_key = "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"
+step3:- 
+    check author urn on postman.com tool 
+    

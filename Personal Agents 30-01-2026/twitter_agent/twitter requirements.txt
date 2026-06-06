@@ -1,0 +1,14 @@
+consumer_key = "slwHX27fyqQ8ah0PvyAQydEst"
+new_consumer_key = "hkZ4AyNtLiu6E1rrixGpTNQrc"
+secret_key = "ZrUgM92BMgWeY2AnjpzuwzttMsqSHRsqevFTT3DPglLokDiiWs"
+new_consumer_key_secret = "IkgMcAuNtOFBkgE7WcwKLLD4HmvyNHCqdF6eAePdIfa1AyHPfI"
+Bearer_Token = "AAAAAAAAAAAAAAAAAAAAAJCZ7QEAAAAAUdyWhg8c%2FWLZbxtIvg3XQbaA%2B28%3DLdraOaRcmeKKDYE8EYxGXduLgqkGFGxeA91gtdS44EUUlXPtkb"
+New_Bearer_Token = "AAAAAAAAAAAAAAAAAAAAAJCZ7QEAAAAAXOiS8mnhN%2B%2F49vHHClXYFTLtrbA%3DCvei3LQg0OevDDGQlDwBSMtcF0PxCQWnY38DgOoSDHlnVzo3oT"
+
+Client_Secret_ID = "aVh2QU10LVJqOEhscUJaYTd6c2Y6MTpjaQ"
+Client_Secret = "P3AyuQy8ZDN2Fwq_iHhLkwPKg8LvwSzgR3hYW2peyejOtnrxee"
+
+Access_token = "2019355308078878720-wwdcX7VK2fCzMQJMTFoVtt0AM5I68i"
+Access_token_secret = "CVgkNasGpKBDSwTzN06yIATdh0Mg6gJMCowhPWtrhpz14"
+consumer_key = "nEsT8yNxaidAD0pS49tikaAYS"
+consumer_key_secret = "CB4oIsvlMAev1pIu7mYLqJdZKNNLLyHj33KZmoTupLQk3xtINq"

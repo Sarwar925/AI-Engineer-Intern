@@ -1,0 +1,35 @@
+Apex Solutions: Internal Operations & Employee Policy
+1. Remote Work and Hybrid Schedule
+Apex Solutions operates on a "Hybrid-First" model. All employees are expected to be in the main office on Tuesdays and Thursdays for collaborative syncs. Employees may work from home on Mondays, Wednesdays, and Fridays.
+
+Core Hours: Regardless of location, all employees must be online and available between 10:00 AM and 3:00 PM EST.
+
+Stipend: A one-time $500 home-office equipment stipend is available to all full-time staff after 90 days of employment.
+
+2. Vacation and Paid Time Off (PTO)
+Accrual: Full-time employees accrue 15 days of PTO per calendar year, earned at a rate of 1.25 days per month.
+
+Rollover: A maximum of 5 unused PTO days can be rolled over to the following calendar year.
+
+Notice: For any leave longer than 3 consecutive days, employees must submit a request via the HR portal at least 2 weeks in advance.
+
+3. Professional Development
+We believe in continuous learning. The company will reimburse up to $2,000 per year for approved certifications, bootcamps, or conferences.
+
+Approval: All courses must be submitted to your direct manager for approval before enrollment to qualify for reimbursement.
+
+4. Communication Etiquette
+Slack: Primary internal communication happens on Slack. Use public channels for project-related updates to ensure transparency.
+
+Email: Use email for formal external communication with clients and vendors only.
+
+Response Time: Internal Slack messages should ideally be acknowledged within 4 business hours.
+
+5. Appointment Booking Protocols
+When booking meetings for clients:
+
+Standard consultations are 30 minutes.
+
+Technical deep-dives are 60 minutes.
+
+No appointments should be booked before 9:00 AM or after 5:00 PM local time.

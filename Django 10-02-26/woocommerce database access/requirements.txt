@@ -1,0 +1,3 @@
+google-adk
+mysql-connector-python
+

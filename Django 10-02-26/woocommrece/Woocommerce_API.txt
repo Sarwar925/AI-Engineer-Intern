@@ -1,0 +1,3 @@
+CONSUMER_KEY = 'ck_ed87432a0ba04e3fc141e9bcbc3e29d8498ec47d'
+CONSUMER_SECRET = 'cs_6e69d5736556cd28f14eaffedb76857424725568'
+WOOCOMMERCE_API_URL='http://localhost/wordpress'

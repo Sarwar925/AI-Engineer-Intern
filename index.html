@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Task Manager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #fff;
+        width: 420px;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: 0.2s;
+    }
+
+    input:focus {
+        border-color: #667eea;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #667eea;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #5a67d8;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    li {
+        background: #f4f6fb;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .task-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .task-name {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .task-date {
+        font-size: 12px;
+        color: #777;
+    }
+
+    .delete {
+        color: crimson;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .empty {
+        text-align: center;
+        color: #aaa;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📅 Task Manager</h2>
+
+    <div class="form-group">
+        <label>Task Name</label>
+        <input type="text" id="taskName" placeholder="Enter task...">
+    </div>
+
+    <div class="form-group">
+        <label>Due Date (e.g. tomorrow, next Monday)</label>
+        <input type="text" id="taskDate" placeholder="Enter date...">
+    </div>
+
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="taskList"></ul>
+    <div id="emptyMsg" class="empty">No tasks added</div>
+</div>
+
+<script>
+    let tasks = [];
+
+    function parseDate(input) {
+    let now = new Date();
+    input = input.toLowerCase().trim();
+
+    // Today
+    if (input === "today") {
+        return new Date();
+    }
+
+    // Tomorrow / Next Day
+    if (input === "tomorrow" || input === "next day") {
+        let d = new Date();
+        d.setDate(now.getDate() + 1);
+        return d;
+    }
+
+    // in X days OR next X days
+    let match = input.match(/(in|next)\s+(\d+)\s+days?/);
+    if (match) {
+        let daysToAdd = parseInt(match[2]);
+        let d = new Date();
+        d.setDate(now.getDate() + daysToAdd);
+        return d;
+    }
+
+    // next weekday (next monday, etc.)
+    let days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+    for (let i = 0; i < days.length; i++) {
+        if (input === "next " + days[i]) {
+            let d = new Date();
+            let diff = (i + 7 - d.getDay()) % 7;
+            diff = diff === 0 ? 7 : diff;
+            d.setDate(d.getDate() + diff);
+            return d;
+        }
+    }
+    let simpleMatch = input.match(/^(\d+)\s+days?$/);
+    if (simpleMatch) {
+        let d = new Date();
+        d.setDate(now.getDate() + parseInt(simpleMatch[1]));
+        return d;
+    }
+
+    return null;
+}
+
+    function addTask() {
+        let name = document.getElementById("taskName").value.trim();
+        let dateText = document.getElementById("taskDate").value.trim();
+
+        if (!name || !dateText) {
+            alert("Please fill both fields!");
+            return;
+        }
+
+        let date = parseDate(dateText);
+
+        if (!date) {
+            alert("Invalid date format. Try 'tomorrow', 'in 2 days', etc.");
+            return;
+        }
+
+        tasks.push({ name, date });
+        tasks.sort((a, b) => a.date - b.date);
+
+        document.getElementById("taskName").value = "";
+        document.getElementById("taskDate").value = "";
+
+        renderTasks();
+    }
+
+    function renderTasks() {
+        let list = document.getElementById("taskList");
+        let emptyMsg = document.getElementById("emptyMsg");
+
+        list.innerHTML = "";
+
+        if (tasks.length === 0) {
+            emptyMsg.style.display = "block";
+            return;
+        }
+
+        emptyMsg.style.display = "none";
+
+        tasks.forEach((task, index) => {
+            let li = document.createElement("li");
+
+            li.innerHTML = `
+                <div class="task-info">
+                    <span class="task-name">${task.name}</span>
+                    <span class="task-date">${task.date.toDateString()}</span>
+                </div>
+                <span class="delete" onclick="deleteTask(${index})">×</span>
+            `;
+
+            list.appendChild(li);
+        });
+    }
+
+    function deleteTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    }
+</script>
+
+</body>
+</html>

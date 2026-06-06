@@ -1,0 +1,118 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task App</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 45%;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Add Task</h2>
+  <input id="title" placeholder="Task name" />
+  <input id="due" placeholder="e.g. tomorrow, next monday" />
+  <button onclick="addTask()">Add</button>
+
+  <h2>Tasks</h2>
+  <ul id="taskList"></ul>
+
+<script>
+  let tasks = [];
+
+  function parseDate(text) {
+    text = text.toLowerCase().trim();
+    let today = new Date();
+
+    if (text === "today") return today;
+
+    if (text === "tomorrow") {
+      let d = new Date();
+      d.setDate(today.getDate() + 1);
+      return d;
+    }
+
+    let match = text.match(/in (\d+) days/);
+    if (match) {
+      let d = new Date();
+      d.setDate(today.getDate() + parseInt(match[1]));
+      return d;
+    }
+
+    const weekdays = {
+      sunday: 0, monday: 1, tuesday: 2,
+      wednesday: 3, thursday: 4,
+      friday: 5, saturday: 6
+    };
+
+    match = text.match(/next (\w+)/);
+    if (match && weekdays[match[1]] !== undefined) {
+      let target = weekdays[match[1]];
+      let current = today.getDay();
+      let diff = target - current;
+      if (diff <= 0) diff += 7;
+
+      let d = new Date();
+      d.setDate(today.getDate() + diff);
+      return d;
+    }
+
+    return null;
+  }
+
+  function addTask() {
+    let title = document.getElementById("title").value;
+    let dueText = document.getElementById("due").value;
+
+    let date = parseDate(dueText);
+
+    if (!date) {
+      alert("Invalid date format");
+      return;
+    }
+
+    tasks.push({ title, due: date });
+
+    document.getElementById("title").value = "";
+    document.getElementById("due").value = "";
+
+    renderTasks();
+  }
+
+  function renderTasks() {
+    let list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    tasks.sort((a, b) => a.due - b.due);
+
+    tasks.forEach(task => {
+      let li = document.createElement("li");
+      li.innerHTML = `<strong>${task.title}</strong> - ${task.due.toISOString().split('T')[0]}`;
+      list.appendChild(li);
+    });
+  }
+</script>
+
+</body>
+</html>
