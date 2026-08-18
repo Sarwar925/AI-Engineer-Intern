@@ -5,7 +5,6 @@ import uuid
 from datetime import datetime, timezone
 from contextlib import contextmanager
 
-import chromadb
 from django.conf import settings
 from langchain_community.document_loaders import TextLoader
 from langchain_core.documents import Document
@@ -51,6 +50,12 @@ def _embeddings():
 def _client():
     if not CHROMA_API_KEY:
         raise RuntimeError("Set CHROMA_API_KEY to save data in Chroma Cloud.")
+    try:
+        import chromadb
+    except ImportError as exc:
+        raise RuntimeError(
+            "ChromaDB is unavailable. Install compatible chromadb and opentelemetry packages to use the knowledge base."
+        ) from exc
     with _disable_proxy_env():
         return chromadb.CloudClient(
             tenant=CHROMA_TENANT,
@@ -116,7 +121,12 @@ def _tag_chunks(docs, doc_id, title, filename, stored_path, created_at):
 
 
 def upsert_knowledge_document(title, file_bytes=None, filename=None, preview_text=""):
-    collection = _collection()
+    try:
+        collection = _collection()
+    except Exception as exc:
+        raise RuntimeError(
+            "Knowledge base is unavailable because ChromaDB/opentelemetry is not compatible in this environment."
+        ) from exc
     doc_id = uuid.uuid4().hex
     created_at = datetime.now(timezone.utc).isoformat()
     original_name = filename or f"{title or 'knowledge_note'}.txt"
@@ -142,7 +152,10 @@ def upsert_knowledge_document(title, file_bytes=None, filename=None, preview_tex
 
 
 def search_knowledge_base(query, top_k=5):
-    collection = _collection()
+    try:
+        collection = _collection()
+    except Exception:
+        return {"found": False, "hits": [], "context": ""}
     if not query or not query.strip() or collection.count() == 0:
         return {"found": False, "hits": [], "context": ""}
 
@@ -216,7 +229,10 @@ def answer_from_knowledge_base(query):
 
 
 def list_knowledge_documents():
-    collection = _collection()
+    try:
+        collection = _collection()
+    except Exception:
+        return []
     if collection.count() == 0:
         return []
 
@@ -248,7 +264,12 @@ def delete_knowledge_document(document_id):
     if not document_id:
         raise ValueError("document_id is required")
 
-    collection = _collection()
+    try:
+        collection = _collection()
+    except Exception as exc:
+        raise RuntimeError(
+            "Knowledge base is unavailable because ChromaDB/opentelemetry is not compatible in this environment."
+        ) from exc
     data = collection.get(where={"doc_id": document_id}, include=["metadatas"])
     metadatas = data.get("metadatas") or []
     collection.delete(where={"doc_id": document_id})

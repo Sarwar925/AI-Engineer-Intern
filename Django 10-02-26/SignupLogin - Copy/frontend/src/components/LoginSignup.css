@@ -1,0 +1,54 @@
+.signup{
+    min-height: 300px;
+    width: 320px;
+    max-width: 95%;
+    background-color: white;
+    margin: 100px auto 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.header{
+    height: 30px;
+    width: 100%;
+    background-color: rgb(22, 32, 277);
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+.input{
+    margin-top: 8px;
+    height: 34px;
+    width: 100%;
+    border-radius: 5px;
+    border-color: blue;
+    box-sizing: border-box;
+}
+.submit{
+    height: 40px;
+    margin: 20px auto 0;
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    background-color: rgb(22, 32, 277);
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(22, 32, 277, 0.3);
+}
+
+.submit:hover{
+    background-color: rgb(32, 42, 287);
+    box-shadow: 0 4px 16px rgba(22, 32, 277, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit:active{
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(22, 32, 277, 0.3);
+}
